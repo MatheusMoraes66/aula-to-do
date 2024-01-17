@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 
-function ModalContainer(show , handleClose, item, handleSave) {
+function ModalContainer({show , handleClose, item}) {
     const [task, setTask] = useState('');
     useEffect(() => {
-        setTask(item.title);
+        if(item !== undefined){
+            setTask(item.title);
+        }
     }, [item])
     return (
         <>
@@ -22,7 +24,7 @@ function ModalContainer(show , handleClose, item, handleSave) {
                     <Button variant="secondary" onClick={handleClose}>
                         Cancelar
                     </Button>
-                    <Button variant="primary" onClick={handleSave}>
+                    <Button variant="primary" onClick={() => console.log(task)}>
                         Salvar
                     </Button>
                 </Modal.Footer>
